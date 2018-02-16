@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="GameAPP">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="GameCtrl">
+
+    <table>
+        <tr  ng-repeat="item in items">
+            <td>
+                <img class="tile" ng-click="do(item.one.row,item.one.col)" ng-src="img/{{item.one.img}}">
+            </td>
+            <td>
+                <img class="tile" ng-click="do(item.two.row,item.two.col)" ng-src="img/{{item.two.img}}">
+            </td>
+            <td>
+                <img class="tile" ng-click="do(item.three.row,item.three.col)" ng-src="img/{{item.three.img}}" >
+            </td>
+
+        </tr>
+    </table>
+    <div id="players">
+        <div>
+            <p>player 1: <img src="img/player.png" id="one"> </p>
+
+        </div>
+        <div>
+            <p>player 2: <img src="img/player.png" id="two"></p>
+
+        </div>
+        <div ng-hide="checkSomething()"></div>
+
+    </div>
+
+</body>
+</html>
