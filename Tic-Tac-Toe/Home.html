@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body ng-controller="GameCtrl">
-
+    <h1>Tic Tac Toe!</h1>
     <table>
         <tr  ng-repeat="item in items">
             <td>
@@ -25,14 +25,14 @@
     </table>
     <div id="players">
         <div>
-            <p>player 1: <img src="img/player.png" id="one"> </p>
+            <h2>Player 1: <img src="img/X.png" id="one"> </h2>
 
         </div>
         <div>
-            <p>player 2: <img src="img/player.png" id="two"></p>
+            <h2>Player 2: <img src="img/circle.png" id="two"></h2>
 
         </div>
-        <div ng-hide="checkSomething()"></div>
+
 
     </div>
 

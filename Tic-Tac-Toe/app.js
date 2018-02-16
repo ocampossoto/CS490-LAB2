@@ -16,6 +16,7 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
    //$scope.items[0].one.img = "X.png";
     var grid = make_grid();
     $scope.do = function(row, col){
+        var win;
         if($scope.player == 1){
             if(grid[row][col].flip($scope.player)){
                 if(col == 1){
@@ -27,9 +28,13 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
                 else if(col == 3){
                     $scope.items[row-1].three.img= "X.png";
                 }
-                document.getElementById("two").style.backgroundColor = "green";
-                document.getElementById("one").style.backgroundColor = "white";
-                $scope.player = 2;
+                win = check_win(grid, row, col);
+                if(!win){
+                    document.getElementById("two").style.backgroundColor = "green";
+                    document.getElementById("one").style.backgroundColor = "white";
+                    $scope.player = 2;
+                }
+
             }
 
         }
@@ -44,12 +49,15 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
                 else if(col == 3){
                     $scope.items[row-1].three.img= "circle.png";
                 }
-                document.getElementById("one").style.backgroundColor = "green";
-                document.getElementById("two").style.backgroundColor = "white";
-                $scope.player = 1;
+                win = check_win(grid, row, col);
+                if(!win) {
+                    document.getElementById("one").style.backgroundColor = "green";
+                    document.getElementById("two").style.backgroundColor = "white";
+                    $scope.player = 1;
+                }
             }
         }
-        if(check_win(grid, row, col)){
+        if(win){
             var message = document.createElement('h2');
 
 
@@ -67,10 +75,10 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
             document.body.appendChild(message);
             document.body.appendChild(btn);
         }
-        if(check_end(grid)){
+        if(check_end(grid) && ! win){
             document.getElementById("one").style.backgroundColor = "green";
             document.getElementById("two").style.backgroundColor = "white";
-            var message = document.createElement('h2');
+            var message = document.createElement('h1');
             message.appendChild(document.createTextNode("Draw"));
             var btn = document.createElement('button');
             btn.innerHTML = 'New Game!';

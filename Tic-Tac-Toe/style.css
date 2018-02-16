@@ -1,7 +1,21 @@
 body{
-    //background-color:black;
+    background-color:black;
+    margin-left: 40%;
 }
 
 .tile{
     border-style: solid;
+    background-color: white;
+}
+
+#one, #two{
+    display: inline;
+    width: 60px;
+}
+h2, h1{
+    margin-left: 10%;
+    color: white;
+}
+button{
+    margin-left: 10%;
 }
