@@ -1,0 +1,35 @@
+#article{
+    margin-top: 20px;
+    border-style: solid;
+    border-bottom-width: thick;
+    background-color: cadetblue;
+    border-radius: 25px;
+}
+#top{
+    background-color: grey;
+    padding-bottom: 30px;
+    border-radius: 20px;
+}
+#items{
+    padding-top: 5px;
+    margin-left: 50px;
+}
+body{
+    background-color: black;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+h2{
+    color: black;
+    padding-left: 20px;
+    text-decoration: underline;
+}
+img{
+    margin-left: 25%;
+    width: 50%;
+    padding-bottom: 20px;
+}
+p{
+    color:black;
+    padding-left: 22px;
+}
