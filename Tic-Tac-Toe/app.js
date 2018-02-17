@@ -7,18 +7,23 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
         {one:{row:3,col:1,img:"back.png"},two:{row:3,col:2,img:"back.png"},three:{row:3,col:3,img:"back.png"}}];
 
     $scope.editing = false;
+    //add items
     $scope.addItem = function(item){
         $scope.items.push(item);
         $scope.item = {};
     };
+    //set colors
     document.getElementById("one").style.backgroundColor = "green";
     document.getElementById("two").style.backgroundColor = "white";
-   //$scope.items[0].one.img = "X.png";
+    //make grid
     var grid = make_grid();
     $scope.do = function(row, col){
         var win;
+        // check for player action
         if($scope.player == 1){
+            //flip tile
             if(grid[row][col].flip($scope.player)){
+                //add appropriate image tag
                 if(col == 1){
                     $scope.items[row-1].one.img= "X.png";
                 }
@@ -28,7 +33,9 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
                 else if(col == 3){
                     $scope.items[row-1].three.img= "X.png";
                 }
+                // check for a win
                 win = check_win(grid, row, col);
+                //if don't do anything.
                 if(!win){
                     document.getElementById("two").style.backgroundColor = "green";
                     document.getElementById("one").style.backgroundColor = "white";
@@ -39,7 +46,9 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
 
         }
         else{
+            //flip tile
             if(grid[row][col].flip($scope.player)){
+                //add image tag
                 if(col == 1){
                     $scope.items[row-1].one.img= "circle.png";
                 }
@@ -49,6 +58,7 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
                 else if(col == 3){
                     $scope.items[row-1].three.img= "circle.png";
                 }
+                //check win if so exit
                 win = check_win(grid, row, col);
                 if(!win) {
                     document.getElementById("one").style.backgroundColor = "green";
@@ -57,6 +67,8 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
                 }
             }
         }
+        // if won
+        // add header and button for reset
         if(win){
             var message = document.createElement('h2');
 
@@ -75,6 +87,8 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
             document.body.appendChild(message);
             document.body.appendChild(btn);
         }
+        //if no one won display draw
+        //add button for reload.
         if(check_end(grid) && ! win){
             document.getElementById("one").style.backgroundColor = "green";
             document.getElementById("two").style.backgroundColor = "white";
@@ -88,13 +102,11 @@ angular.module('GameAPP',[]).controller('GameCtrl', function($scope){
             document.body.appendChild(message);
             document.body.appendChild(btn);
         }
-        //console.log(end);
-
     }
 });
 
 function check_win(grid, r, c){
-
+    // goes through and check the score for a player
     var count = 1;
     //down
     if(r < 3){
@@ -296,7 +308,7 @@ function check_win(grid, r, c){
 
 }
 
-
+//check if everything is flipped
 function check_end(grid){
     for (var row = 1; row < 4; row++) {
         for (var col = 1; col < 4; col++) {
@@ -310,6 +322,7 @@ function check_end(grid){
 
 
 function make_grid(){
+    //create grid size 3x3
     var grid=[];
     for (var row = 1; row < 4; row++) {
         grid[row] = [];
@@ -327,11 +340,15 @@ function Tile(r,c) {
     this.flipped = false;
 }
 
+//flip the tile
 Tile.prototype.flip = function (player) {
+    //check if already flipped
     if(this.flipped){
         return false;
     }
+    //change var.
     this.flipped=true;
+    //set value to X or O
     if(player==1){
         this.value = "X";
     }
